@@ -1,8 +1,7 @@
-import { IPaginationParams } from '@app/shared/interfaces';
-import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 import { Genre } from './genre.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class GenreService {
@@ -11,7 +10,7 @@ export class GenreService {
   ) {
   }
 
-  async findGenres(paginationParams: IPaginationParams): Promise<Genre[]> {
-    return await this._genreRepository.find(paginationParams);
+  async findGenres(): Promise<Genre[]> {
+    return await this._genreRepository.find();
   }
 }
