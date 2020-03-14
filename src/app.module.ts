@@ -1,6 +1,7 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { GenreModule } from '@app/genre';
 import { MovieModule } from '@app/movie';
 import { Module } from '@nestjs/common';
 
@@ -24,6 +25,7 @@ import { Module } from '@nestjs/common';
       logging: process.env.DB_LOGGING === 'true'
     } as PostgresConnectionOptions),
     MovieModule,
+    GenreModule,
   ]
 })
 export class AppModule {}

@@ -7,7 +7,7 @@ export class PaginationParamValidationPipe implements PipeTransform {
   }
 
   transform(value: IPaginationParams, metadata: ArgumentMetadata): IPaginationParams {
-    const {take, skip} = value;
+    const {take, skip} = value || {};
 
     if (take > this._maxTakeValue) {
       throw new BadRequestException(TAKE_MAX_EXCEEDED(this._maxTakeValue));

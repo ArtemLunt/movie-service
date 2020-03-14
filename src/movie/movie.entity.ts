@@ -1,32 +1,27 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Genre } from './genre.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { Genre } from '@app/genre';
 
 @Entity()
 export class Movie {
-  @PrimaryGeneratedColumn() id: number;
+  @ApiProperty() @PrimaryGeneratedColumn() id: number;
+  @ApiProperty() @Column() backdrop_path: string;
+  @ApiProperty() @Column() poster_path: string;
+  @ApiProperty() @Column() original_language: string;
+  @ApiProperty() @Column() original_title: string;
+  @ApiProperty() @Column() overview: string;
+  @ApiProperty() @Column() title: string;
+  @ApiProperty() @Column() video: boolean;
+  @ApiProperty() @Column() popularity: number;
+  @ApiProperty() @Column() vote_average: number;
+  @ApiProperty() @Column() vote_count: number;
 
-  @Column() backdrop_path: string;
+  @ApiProperty({type: Date}) @Column() release_date: Date;
 
-  @Column() poster_path: string;
-
-  @Column() original_language: string;
-
-  @Column() original_title: string;
-
-  @Column() overview: string;
-
-  @Column() release_date: Date;
-
-  @Column() title: string;
-
-  @Column() video: boolean;
-
-  @Column() popularity: number;
-
-  @Column() vote_average: number;
-
-  @Column() vote_count: number;
-
+  @ApiProperty({
+    isArray: true,
+    type: Genre
+  })
   @ManyToMany(() => Genre, {cascade: true, eager: true})
   @JoinTable({
     name: 'movie_genre',
